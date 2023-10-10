@@ -1,4 +1,4 @@
-package com.example.ASTA;
+package efrei.lequipe.ASTA;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

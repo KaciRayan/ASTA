@@ -1,4 +1,4 @@
-package efrei.lequipe.apprenticeTutoring.tutor;
+package efrei.lequipe.ASTA.model;
 
 public class Tutor {
     private String id;

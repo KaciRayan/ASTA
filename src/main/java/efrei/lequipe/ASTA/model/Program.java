@@ -1,4 +1,4 @@
-package efrei.lequipe.apprenticeTutoring.program;
+package efrei.lequipe.ASTA.model;
 
 public enum Program {
     None(null, null),

@@ -1,4 +1,4 @@
-package efrei.lequipe.apprenticeTutoring.major;
+package efrei.lequipe.ASTA.model;
 
 public enum Major {
     None(null),

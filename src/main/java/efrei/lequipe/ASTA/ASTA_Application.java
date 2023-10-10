@@ -1,4 +1,4 @@
-package com.example.ASTA;
+package efrei.lequipe.ASTA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
