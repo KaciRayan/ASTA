@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: mysql-1
+    image: mysql
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: lafine
+      MYSQL_PASSWORD: equipe
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    restart: always
