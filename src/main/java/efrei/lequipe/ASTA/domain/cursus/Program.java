@@ -1,4 +1,4 @@
-package efrei.lequipe.ASTA.model;
+package efrei.lequipe.ASTA.domain.cursus;
 
 public enum Program {
     None(null, null),
