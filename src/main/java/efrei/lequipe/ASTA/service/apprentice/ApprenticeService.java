@@ -4,6 +4,8 @@ import efrei.lequipe.ASTA.domain.user.Apprentice;
 import efrei.lequipe.ASTA.repository.IApprenticeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ApprenticeService implements IApprenticeService {
 
@@ -26,21 +28,11 @@ public class ApprenticeService implements IApprenticeService {
     @Override
     public Apprentice updateApprentice(Apprentice apprentice) {
         var apprenticeFromRepository = getApprenticeFromId(apprentice.getId());
-        if(apprenticeFromRepository == null){
-            return null;
-        }
-
-        return apprenticeRepository.save(apprentice);
+        return apprenticeFromRepository != null ? apprenticeRepository.save(apprentice) : null;
     }
 
     @Override
-    public Apprentice archiveApprentice(Apprentice apprentice) {
-        var apprenticeFromRepository = getApprenticeFromId(apprentice.getId());
-        if(apprenticeFromRepository == null){
-            return null;
-        }
-
-        apprenticeFromRepository.archived();
-        return apprenticeRepository.save(apprenticeFromRepository);
+    public List<Apprentice> getApprentices() {
+        return apprenticeRepository.findAll();
     }
 }

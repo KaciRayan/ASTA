@@ -1,17 +1,15 @@
 package efrei.lequipe.ASTA.domain.user;
 
-import efrei.lequipe.ASTA.domain.cursus.Major;
-import efrei.lequipe.ASTA.domain.cursus.Program;
 import jakarta.persistence.*;
 
 @Entity
 public class Apprentice extends User {
-    private Program program;
-    private Major major;
+    private String program;
+    private String major;
     private boolean archived;
 
-    public Apprentice(String id, Program program, Major major, String lastName, String firstName, String email, String phoneNumber, boolean archived) {
-        super(id, lastName, firstName, email, phoneNumber);
+    public Apprentice(String id, String firstName, String lastName, String program, String major, String email, String phoneNumber, boolean archived) {
+        super(id, firstName, lastName, email, phoneNumber);
         this.program = program;
         this.major = major;
         this.archived = archived;
@@ -20,11 +18,11 @@ public class Apprentice extends User {
     public Apprentice() {
     }
 
-    public Program getProgram() {
+    public String getProgram() {
         return program;
     }
 
-    public Major getMajor() {
+    public String getMajor() {
         return major;
     }
 
@@ -32,7 +30,7 @@ public class Apprentice extends User {
         return archived;
     }
 
-    public void archived(){
+    public void archived() {
         this.archived = true;
     }
 }
