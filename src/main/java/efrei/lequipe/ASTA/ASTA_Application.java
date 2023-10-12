@@ -3,9 +3,9 @@ package efrei.lequipe.ASTA;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+@RestController
 @SpringBootApplication
 public class ASTA_Application {
 
@@ -14,8 +14,8 @@ public class ASTA_Application {
     }
 
     @GetMapping
-    public List<String> getHello() {
-        return List.of("Hello World", "Hello Might");
+    public String getHello() {
+        return "Go to http://localhost:8080/swagger-ui/index.html#/ to see available actions";
     }
 
 }
