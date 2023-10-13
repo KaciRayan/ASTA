@@ -15,7 +15,8 @@ public class ASTA_Application {
 
     @GetMapping
     public String getHello() {
-        return "Go to http://localhost:8080/swagger-ui/index.html#/ to see available actions";
+        var swaggerLink = "./swagger-ui/index.html#/"; // lien : http://localhost:8080/asta/v1/swagger-io/index.html#/
+        return "Go to <a href=" + swaggerLink+ ">OpenAI Swagger</a> to see available actions";
     }
 
 }

@@ -4,15 +4,21 @@ import efrei.lequipe.ASTA.model.apprentice.*;
 import efrei.lequipe.ASTA.service.apprentice.IApprenticeService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("api/v1/apprentices")
+@RequestMapping(ApprenticeController.PATH)
+@Tag(name = ApprenticeController.NAME)
 public class ApprenticeController {
+    public final static String NAME = "Apprentices";
+    public final static String PATH = "apprentices";
     private final IApprenticeService apprenticeService;
 
     public ApprenticeController(IApprenticeService apprenticeService) {
@@ -36,13 +42,13 @@ public class ApprenticeController {
             @ApiResponse(responseCode = "200", description = "Apprentices fetched."),
             @ApiResponse(responseCode = "404", description = "No apprentice available."),
     })
-    @GetMapping()
-    public ResponseEntity<Stream<ApprenticeResponse>> getAllApprentices() {
-        var apprentices = apprenticeService.getApprentices();
 
-        return !apprentices.isEmpty()
-                ? ResponseEntity.ok(apprentices.stream().map(ApprenticeResponse::FromDomain))
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping()
+    public ResponseEntity<Iterable<ApprenticeResponse>> getAllApprentices() {
+        var apprentices = apprenticeService.getApprentices();
+        var apprenticesResponse = StreamSupport.stream(apprentices.spliterator(), false)
+                        .map(ApprenticeResponse::FromDomain).toList();
+        return ResponseEntity.ok(apprenticesResponse);
     }
 
     @ApiResponses(value = {
@@ -91,5 +97,15 @@ public class ApprenticeController {
         apprenticeToArchive.archived();
         apprenticeToArchive = apprenticeService.updateApprentice(apprenticeToArchive);
         return ResponseEntity.ok(ApprenticeResponse.FromDomain(apprenticeToArchive));
+    }
+
+    @GetMapping("page/{pageNumber}")
+    public Page<ApprenticeResponse> getAllApprenticesPaginated(@PathVariable int pageNumber) {
+        return apprenticeService.getPaginatedApprentices(pageNumber).map(ApprenticeResponse::FromDomain);
+    }
+
+    @GetMapping("page/{pageNumber}/{tutorId}")
+    public Page<ApprenticeResponse> getAllApprenticesPaginated(@PathVariable int pageNumber, @PathVariable String tutorId) {
+        throw new NotImplementedException("pageNumber: " + pageNumber + ", tutorId: " + tutorId);
     }
 }

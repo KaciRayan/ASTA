@@ -8,7 +8,15 @@ public class Apprentice extends User {
     private String major;
     private boolean archived;
 
-    public Apprentice(String id, String firstName, String lastName, String program, String major, String email, String phoneNumber, boolean archived) {
+    public Apprentice(
+            String id,
+            String firstName,
+            String lastName,
+            String program,
+            String major,
+            String email,
+            String phoneNumber,
+            boolean archived) {
         super(id, firstName, lastName, email, phoneNumber);
         this.program = program;
         this.major = major;

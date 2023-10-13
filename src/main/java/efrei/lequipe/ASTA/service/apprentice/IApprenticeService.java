@@ -1,8 +1,7 @@
 package efrei.lequipe.ASTA.service.apprentice;
 
 import efrei.lequipe.ASTA.domain.user.Apprentice;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface IApprenticeService {
 
@@ -12,5 +11,7 @@ public interface IApprenticeService {
 
     Apprentice updateApprentice(Apprentice apprentice);
 
-    List<Apprentice> getApprentices();
+    Iterable<Apprentice> getApprentices();
+
+    Page<Apprentice> getPaginatedApprentices(int pageNumber);
 }
